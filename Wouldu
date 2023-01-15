@@ -19,7 +19,7 @@ rconsoleprint("                              XP^X'`b   d'`X^XX\n")
 rconsoleprint("                              X. 9  `   '  P )X\n")
 rconsoleprint("                              `b  `       '  d'\n")
 rconsoleprint("                               `             '\n\n")
-
+repeat wait until game:IsLoaded()
 if game.PlaceId == 21532277 then
     local args = {
         [1] = "Jewelry Shop",
