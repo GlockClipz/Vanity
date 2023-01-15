@@ -1,3 +1,4 @@
+rconsoleclear()
 rconsoleprint('        .                                                      .\n')
 rconsoleprint('        .n                   .                 .                  n.\n')
 rconsoleprint('  .   .dP                  dP                   9b                 9b.    .\n')
@@ -42,6 +43,7 @@ if game.PlaceId == 21532277 then
     game:GetService("ReplicatedStorage").StartGame:FireServer(unpack(args))
     syn.queue_on_teleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/GlockClipz/were/main/Wouldu'))()")
 elseif game.PlaceId == 2557847604 then
+    repeat wait() until game:IsLoaded()
     rconsoleprint("Readying Up\n")
     game:GetService("ReplicatedStorage").RS_Package.Remotes.PlayerReady:FireServer("Class 1")
     task.wait(0.3)
