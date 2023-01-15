@@ -37,7 +37,7 @@ if game.PlaceId == 21532277 then
     rconsoleprint("Creating Lobby\n")
     task.wait(0.5)
     local args = {
-        [1] = game:GetService("ReplicatedStorage").Lobbies[game.Players.LocalPlayer.Name]
+        [1] = game:GetService("ReplicatedStorage").Lobbies[game.Players.LocalPlayer.DisplayName]
     }
     game:GetService("ReplicatedStorage").StartGame:FireServer(unpack(args))
     syn.queue_on_teleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/GlockClipz/were/main/Wouldu'))()")
@@ -81,7 +81,7 @@ elseif game.PlaceId == 2557847604 then
     task.wait(5)
     rconsoleprint("Finding the crown\n")
     repeat wait()
-    until game:GetService("Players").qrspg1m40qwcu880uqic.PlayerGui["SG_Package"].MainGui.Objective["text_objectiveMain"].Text ~= "Find the crown"
+    until game:GetService("Players").LocalPlayer.PlayerGui["SG_Package"].MainGui.Objective["text_objectiveMain"].Text ~= "Find the crown"
     syn.queue_on_teleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/GlockClipz/were/main/Wouldu'))()")
 end
 --[[
