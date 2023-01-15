@@ -1,4 +1,3 @@
-
 rconsoleprint('        .                                                      .\n')
 rconsoleprint('        .n                   .                 .                  n.\n')
 rconsoleprint('  .   .dP                  dP                   9b                 9b.    .\n')
@@ -19,7 +18,7 @@ rconsoleprint("                              XP^X'`b   d'`X^XX\n")
 rconsoleprint("                              X. 9  `   '  P )X\n")
 rconsoleprint("                              `b  `       '  d'\n")
 rconsoleprint("                               `             '\n\n")
-repeat wait until game:IsLoaded()
+
 if game.PlaceId == 21532277 then
     local args = {
         [1] = "Jewelry Shop",
@@ -38,12 +37,21 @@ if game.PlaceId == 21532277 then
     rconsoleprint("Creating Lobby\n")
     task.wait(0.5)
     local args = {
-        [1] = game:GetService("ReplicatedStorage").Lobbies.VastOwnsMe
+        [1] = game:GetService("ReplicatedStorage").Lobbies[game.Players.LocalPlayer.Name]
     }
     game:GetService("ReplicatedStorage").StartGame:FireServer(unpack(args))
-    rconsoleprint("Starting Lobby\n")
-
+    syn.queue_on_teleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/GlockClipz/were/main/Wouldu'))()")
 elseif game.PlaceId == 2557847604 then
+    rconsoleprint("Readying Up\n")
+    game:GetService("ReplicatedStorage").RS_Package.Remotes.PlayerReady:FireServer("Class 1")
+    task.wait(0.3)
+    rconsoleprint("Startting Heist\n")
+    local args = {
+        [1] = "Class 1",
+        [2] = true
+    }
+    game:GetService("ReplicatedStorage").RS_Package.Remotes.PlayerReady:FireServer(unpack(args))
+    task.wait(4)
     game:GetService("ReplicatedStorage").RS_Package.Assets.Remotes.MaskOn:FireServer()
     rconsoleprint("Putting Mask\n")
     task.wait(1)
@@ -61,6 +69,7 @@ elseif game.PlaceId == 2557847604 then
             end
         end
     end)
+    game:GetService("Workspace").Police:Destroy()
     task.wait(1)
     rconsoleprint("Grabing jewelery\n")
     for i,v in pairs(game:GetService("Workspace").Lootables:GetDescendants()) do
@@ -70,7 +79,10 @@ elseif game.PlaceId == 2557847604 then
         end
     end
     task.wait(5)
-    rconsoleprint("Going to safe\n")
+    rconsoleprint("Finding the crown\n")
+    repeat wait()
+    until game:GetService("Players").qrspg1m40qwcu880uqic.PlayerGui["SG_Package"].MainGui.Objective["text_objectiveMain"].Text ~= "Find the crown"
+    syn.queue_on_teleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/GlockClipz/were/main/Wouldu'))()")
 end
 --[[
 function win()
