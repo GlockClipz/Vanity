@@ -20,50 +20,30 @@ rconsoleprint("                              X. 9  `   '  P )X\n")
 rconsoleprint("                              `b  `       '  d'\n")
 rconsoleprint("                               `             '\n\n")
 
-if game.PlaceId == 21532277 then
-    local args = {
-        [1] = "Jewelry Shop",
-        [2] = "Normal",
-        [3] = 1,
-        [4] = "PUBLIC",
-        [5] = "Stealth",
-        [6] = true,
-        [7] = false,
-        [8] = 4,
-        [9] = false,
-        [10] = false,
-        [11] = {}
-    }
-    game:GetService("ReplicatedStorage").MakeLobby:InvokeServer(unpack(args))
-    rconsoleprint("Creating Lobby\n")
-    task.wait(0.5)
-    rconsoleprint("Starting Lobby\n")
-    local args = {
-        [1] = game:GetService("ReplicatedStorage").Lobbies[game.Players.LocalPlayer.DisplayName]
-    }
-    game:GetService("ReplicatedStorage").StartGame:FireServer(unpack(args))
-    syn.queue_on_teleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/GlockClipz/were/main/Wouldu'))()")
-elseif game.PlaceId == 2557847604 then
-    repeat wait() until game:IsLoaded()
-    rconsoleprint("Readying Up\n")
+if game.PlaceId == 2557847604 then
+    --> Game Started <--
+    repeat wait() until game:IsLoaded() -- Waits till game is loaded
+    wait(5) -- Esitmated black screen time
+    rconsoleprint("Readying Up\n") -- Insight
     local args = {
         [1] = "Class 1"
     }
-    game:GetService("ReplicatedStorage").RS_Package.Remotes.PlayerReady:FireServer(unpack(args))
-    task.wait(0.3)
-    rconsoleprint("Startting Heist\n")
+    game:GetService("ReplicatedStorage").RS_Package.Remotes.PlayerReady:FireServer(unpack(args)) -- Readys up
+    task.wait(0.5)
+    rconsoleprint("Startting Heist\n") -- Insight
     local args = {
         [1] = "Class 1",
         [2] = true
     }
-    game:GetService("ReplicatedStorage").RS_Package.Remotes.PlayerReady:FireServer(unpack(args))
+    game:GetService("ReplicatedStorage").RS_Package.Remotes.PlayerReady:FireServer(unpack(args)) -- Starts it
     task.wait(8)
     game:GetService("ReplicatedStorage").RS_Package.Assets.Remotes.MaskOn:FireServer()
     rconsoleprint("Putting Mask\n")
     task.wait(1)
     rconsoleprint("Optomizing script\n")
+    _G.Prox = true
     spawn(function()
-        while true do task.wait(0.05)
+        while _G.Prox == true do task.wait(0.01)
             for i, v in pairs(game:GetService("Workspace"):GetDescendants()) do
                 if v:IsA("Part") or v:IsA("MeshPart") then
                     if game:GetService("Players").LocalPlayer:DistanceFromCharacter(v.Position) <= 25 then
@@ -76,38 +56,64 @@ elseif game.PlaceId == 2557847604 then
         end
     end)
     game:GetService("Workspace").Police:Destroy()
+    --> Robbery <--
     task.wait(1)
+    rconsoleprint("Disabling Cameras\n")
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(45.7404938, 4, -88.0140152, -0.000799461093, 0, 0.999999702, 0, 1, 0, -0.999999702, 0, -0.000799461093)
+    task.wait(0.5)
     rconsoleprint("Grabing jewelery\n")
     for i,v in pairs(game:GetService("Workspace").Lootables:GetDescendants()) do
         if v:FindFirstChild("Part") ~= nil then
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.Part.CFrame + Vector3.new(0,0,-5)
-            task.wait(0.1)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.Part.CFrame
+            task.wait(0.01)
         end
     end
-    task.wait(5)
+    task.wait(0.05)
+    _G.Prox = false
     rconsoleprint("Waiting for drills to open\n")
-    teleports = {
-        van = CFrame.new(-133.473022, 6.59859943, -102.65773, -0.0197340995, 0, -0.999805272, 0, 1, 0, 0.999805272, 0, -0.0197340995),
-        safe1 = CFrame.new(38.5456314, 8.01042747, -129.998886, -0.0092557976, 0, -0.999957144, 0, 1, 0, 0.999957144, 0, -0.0092557976),
-        safe2 = CFrame.new(-1.43196642, 3.99999809, -101.391121, -0.792171538, 0, -0.610298455, 0, 1, 0, 0.610298455, 0, -0.792171538),
-    
-    }
-    
-    repeat wait()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-133.473022, 6.59859943, -102.65773, -0.0197340995, 0, -0.999805272, 0, 1, 0, 0.999805272, 0, -0.0197340995) + Vector3.new(0,-7, -2)
-        task.wait(1)
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(38.5456314, 8.01042747, -129.998886, -0.0092557976, 0, -0.999957144, 0, 1, 0, 0.999957144, 0, -0.0092557976)
 
+    repeat task.wait(2)
+        pcall(function()
+            --> Finds the crown <--
+            for i, v in pairs(game:GetService("Workspace"):GetDescendants()) do
+                if v.Name == "Crown" then
+                    if game:GetService("Players").LocalPlayer:DistanceFromCharacter(v.Position) <= 25 then
+                        if v:FindFirstChild("ProximityPrompt") then
+                            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame + Vector3.new(0,-5,0)
+                            fireproximityprompt(v.ProximityPrompt)
+                        end
+                    end
+                end
+            end
+            --> Safe 1 <--
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(38.8737488, 3.69580841, -129.738083, 0.0206064451, 0, -0.999787688, 0, 1, 0, 0.999787688, 0, 0.0206064451) + Vector3.new(0,-5,0)
+            fireproximityprompt(game.Workspace.Map.Safe.MiniSafe.InsertDrill.ProximityPromptPickLock)
+            task.wait(0.6)
+            --> Safe 2 <--
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0.406560838, 3.6574235, -99.0621948, 0.747734725, 0, 0.663997531, 0, 1, 0, -0.663997531, 0, 0.747734725) + Vector3.new(0,-5,0)
+            task.wait(0.5)
+            for i, v in pairs(game:GetService("Workspace"):GetDescendants()) do
+                if v:IsA("Part") or v:IsA("MeshPart") then
+                    if game:GetService("Players").LocalPlayer:DistanceFromCharacter(v.Position) <= 25 then
+                        if v:FindFirstChild("ProximityPromptPickLock") then
+                            fireproximityprompt(v.ProximityPromptPickLock)
+                        end
+                    end
+                end
+            end
+
+        end)
     until game:GetService("Players").LocalPlayer.PlayerGui["SG_Package"].MainGui.Objective["text_objectiveMain"].Text ~= "Find the crown"
     rconsoleprint("Crown FOUND!\n")
     wait(1)
     rconsoleprint("Goin to van\n")
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = teleports.van
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-136.404678, 6.59859991, -102.319366, -0.0201444551, 0, -0.999797106, 0, 1, 0, 0.999797106, 0, -0.0201444551)
     wait(1)
     rconsoleprint("Leaving\n")
 
-    syn.queue_on_teleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/GlockClipz/were/main/Wouldu'))()")
+    syn.queue_on_teleport("loadstring(game:HttpGet(' '))()")
 end
+
 --[[
 function win()
     rconsoleprint("CHEATERS ALWAYS WIN")
