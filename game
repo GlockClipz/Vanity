@@ -21,6 +21,8 @@ rconsoleprint("                              `b  `       '  d'\n")
 rconsoleprint("                               `             '\n\n")
 
 if game.PlaceId == 21532277 then
+    repeat wait until game:IsLoaded()
+    wait(1)
     local HttpService = game:GetService("HttpService")
     if (readfile and isfile and isfile("Notoriety.txt")) then
         getgenv().settings = HttpService:JSONDecode(readfile("Notoriety.txt"))
@@ -92,7 +94,7 @@ elseif game.PlaceId == 2557847604 then
     for i,v in pairs(game:GetService("Workspace").Lootables:GetDescendants()) do
         if v:FindFirstChild("Part") ~= nil then
             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.Part.CFrame
-            task.wait(0.01)
+            task.wait(0)
             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0,500,0)
         end
     end
@@ -113,7 +115,7 @@ elseif game.PlaceId == 2557847604 then
             end
         end
     end)
-    repeat task.wait(2)
+    repeat task.wait(0.10)
         pcall(function()
             --> Finds the crown <--
             for i, v in pairs(game:GetService("Workspace"):GetDescendants()) do
@@ -128,10 +130,9 @@ elseif game.PlaceId == 2557847604 then
             end
             --> Safe 1 <--
             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(38.8737488, 3.69580841, -129.738083, 0.0206064451, 0, -0.999787688, 0, 1, 0, 0.999787688, 0, 0.0206064451) + Vector3.new(0,-5,0)
-            task.wait(1)
             --> Safe 2 <--
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0.406560838, 3.6574235, -99.0621948, 0.747734725, 0, 0.663997531, 0, 1, 0, -0.663997531, 0, 0.747734725) + Vector3.new(0,-5,0)
             task.wait(0.5)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0.406560838, 3.6574235, -99.0621948, 0.747734725, 0, 0.663997531, 0, 1, 0, -0.663997531, 0, 0.747734725) + Vector3.new(0,-5,0)
         
 
         end)
@@ -143,7 +144,8 @@ elseif game.PlaceId == 2557847604 then
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-136.404678, 6.59859991, -102.319366, -0.0201444551, 0, -0.999797106, 0, 1, 0, 0.999797106, 0, -0.0201444551)
     wait(1)
     rconsoleprint("Leaving\n")
-
+    task.wait(0.5)
+    game:GetService("ReplicatedStorage")["RS_Package"].Remotes.GoToMenu:FireServer()
     syn.queue_on_teleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/GlockClipz/Vanity/main/game'))()")
 end
 
