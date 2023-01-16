@@ -1,3 +1,25 @@
+rconsoleclear()
+rconsoleprint('        .                                                      .\n')
+rconsoleprint('        .n                   .                 .                  n.\n')
+rconsoleprint('  .   .dP                  dP                   9b                 9b.    .\n')
+rconsoleprint(' 4    qXb         .       dX                     Xb       .        dXp     t\n')
+rconsoleprint('dX.    9Xb      .dXb    __                         __    dXb.     dXP     .Xb\n')
+rconsoleprint('9XXb._       _.dXXXXb dXXXXbo.                 .odXXXXb dXXXXb._       _.dXXP\n')
+rconsoleprint("  `9XXXXXXXXXXXXXXXXXXXXX'~   ~`OOO8b   d8OOO'~   ~`XXXXXXXXXXXXXXXXXXXXXP'\n")
+rconsoleprint("    `9XXXXXXXXXXXP' `9XX'          `98v8P'          `XXP' `9XXXXXXXXXXXP'\n")
+rconsoleprint('        ~~~~~~~       9X.          .db|db.          .XP       ~~~~~~~\n')
+rconsoleprint("                        )b.  .dbo.dP'`v'`9b.odb.  .dX(    \n")
+rconsoleprint("                      ,dXXXXXXXXXXXb     dXXXXXXXXXXXb.\n")
+rconsoleprint("                     dXXXXXXXXXXXP'   .   `9XXXXXXXXXXXb\n")
+rconsoleprint("                    dXXXXXXXXXXXXb   d|b   dXXXXXXXXXXXXb\n")
+rconsoleprint("                    9XXb'   `XXXXXb.dX|Xb.dXXXXX'   `dXXP\n")
+rconsoleprint("                     `'      9XXXXXX(   )XXXXXXP      `'\n")
+rconsoleprint("                              XXXX X.`v'.X XXXX\n")
+rconsoleprint("                              XP^X'`b   d'`X^XX\n")
+rconsoleprint("                              X. 9  `   '  P )X\n")
+rconsoleprint("                              `b  `       '  d'\n")
+rconsoleprint("                               `             '\n\n")
+
 if game.PlaceId == 21532277 then
     local HttpService = game:GetService("HttpService")
     if (readfile and isfile and isfile("Notoriety.txt")) then
@@ -15,11 +37,13 @@ if game.PlaceId == 21532277 then
             [10] = false,
             [11] = {}
         }
+        rconsoleprint("Making lobby\n") -- Insight
         game:GetService("ReplicatedStorage").MakeLobby:InvokeServer(unpack(args))
         task.wait(0.5)
         local args = {
             [1] = game:GetService("ReplicatedStorage").Lobbies[game.Players.LocalPlayer.DisplayName]
         }
+        rconsoleprint("Starting lobby\n") -- Insight
         game:GetService("ReplicatedStorage").StartGame:FireServer(unpack(args))
         syn.queue_on_teleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/GlockClipz/Vanity/main/game'))()")
     end
@@ -116,3 +140,33 @@ elseif game.PlaceId == 2557847604 then
 
     syn.queue_on_teleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/GlockClipz/Vanity/main/game'))()")
 end
+
+--[[
+function win()
+    rconsoleprint("CHEATERS ALWAYS WIN")
+end
+local TPService = game:GetService("TeleportService")
+syn.queue_on_teleport("win'()'")
+
+local args = {
+    [1] = "Jewelry Shop",
+    [2] = "Normal",
+    [3] = 1,
+    [4] = "PUBLIC",
+    [5] = "Stealth",
+    [6] = true,
+    [7] = false,
+    [8] = 4,
+    [9] = false,
+    [10] = false,
+    [11] = {}
+}
+
+game:GetService("ReplicatedStorage").MakeLobby:InvokeServer(unpack(args))
+
+local args = {
+    [1] = game:GetService("ReplicatedStorage").Lobbies.VastOwnsMe
+}
+
+game:GetService("ReplicatedStorage").StartGame:FireServer(unpack(args))
+]]
