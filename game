@@ -93,12 +93,26 @@ elseif game.PlaceId == 2557847604 then
         if v:FindFirstChild("Part") ~= nil then
             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.Part.CFrame
             task.wait(0.01)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0,500,0)
         end
     end
-    task.wait(0.05)
+    task.wait(0.01)
     _G.Prox = false
     rconsoleprint("Waiting for drills to open\n")
-
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0,500,0)
+    spawn(function()
+        while true do task.wait(0.01)
+            for i, v in pairs(game:GetService("Workspace"):GetDescendants()) do
+                if v:IsA("Part") or v:IsA("MeshPart") then
+                    if game:GetService("Players").LocalPlayer:DistanceFromCharacter(v.Position) <= 25 then
+                        if v:FindFirstChild("ProximityPromptPickLock") then
+                            fireproximityprompt(v.ProximityPromptPickLock)
+                        end
+                    end
+                end
+            end
+        end
+    end)
     repeat task.wait(2)
         pcall(function()
             --> Finds the crown <--
@@ -114,23 +128,15 @@ elseif game.PlaceId == 2557847604 then
             end
             --> Safe 1 <--
             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(38.8737488, 3.69580841, -129.738083, 0.0206064451, 0, -0.999787688, 0, 1, 0, 0.999787688, 0, 0.0206064451) + Vector3.new(0,-5,0)
-            fireproximityprompt(game.Workspace.Map.Safe.MiniSafe.InsertDrill.ProximityPromptPickLock)
-            task.wait(0.6)
+            task.wait(1)
             --> Safe 2 <--
             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0.406560838, 3.6574235, -99.0621948, 0.747734725, 0, 0.663997531, 0, 1, 0, -0.663997531, 0, 0.747734725) + Vector3.new(0,-5,0)
             task.wait(0.5)
-            for i, v in pairs(game:GetService("Workspace"):GetDescendants()) do
-                if v:IsA("Part") or v:IsA("MeshPart") then
-                    if game:GetService("Players").LocalPlayer:DistanceFromCharacter(v.Position) <= 25 then
-                        if v:FindFirstChild("ProximityPromptPickLock") then
-                            fireproximityprompt(v.ProximityPromptPickLock)
-                        end
-                    end
-                end
-            end
+        
 
         end)
     until game:GetService("Players").LocalPlayer.PlayerGui["SG_Package"].MainGui.Objective["text_objectiveMain"].Text ~= "Find the crown"
+
     rconsoleprint("Crown FOUND!\n")
     wait(1)
     rconsoleprint("Goin to van\n")
